@@ -1,0 +1,30 @@
+{
+  "name": "morgan-udp-logger",
+  "version": "0.0.0",
+  "description": "udp morgan log transport, include both client and server components as well as a basic ui",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.14.0",
+    "morgan": "^1.7.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nickfloros/morgan-udp-logger.git"
+  },
+  "keywords": [
+    "nodejs",
+    "express",
+    "udp",
+    "morgan"
+  ],
+  "author": "Nick Floros",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nickfloros/morgan-udp-logger/issues"
+  },
+  "homepage": "https://github.com/nickfloros/morgan-udp-logger#readme"
+}
