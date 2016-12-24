@@ -1,20 +1,31 @@
-var dgram = require('dgram'),
-	server = dgram.createSocket('udp4'),
+var callBack = null,
+	dgram = require('dgram'),
+	udpServer = dgram.createSocket('udp4'),
 	AccessRecordFactory = require('../lib/factories/access-record.factory');
 
-server.on('error', (err) => {
-	console.log(`server error:\n${err.stack}`);
-	server.close();
+udpServer.on('error', (err) => {
+	console.log(`udpServer error:\n${err.stack}`);
+	udpServer.close();
 });
 
-
-server.on('message', (msg, rinfo) => {
-	console.log(AccessRecordFactory.parser(msg.toString()));
+udpServer.on('message', (msg, rinfo) => {
+	var payload = AccessRecordFactory.parser(msg.toString());
+	if (callBack) {
+		callBack(payload);
+	}
 });
 
-server.on('listening', () => {
-	var address = server.address();
-	console.log(`server listening ${address.address}:${address.port}`);
+udpServer.on('listening', () => {
+	var address = udpServer.address();
+	console.log(`udpServer listening ${address.address}:${address.port}`);
 });
+/**
+ * set port to listend for inbound messages ..
+ */
+udpServer.bind(41234);
 
-server.bind(41234);
+module.exports = {
+	bind: function (cb) {
+		callBack = cb;
+	}
+};
