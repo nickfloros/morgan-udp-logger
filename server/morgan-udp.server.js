@@ -10,7 +10,7 @@ udpServer.on('error', (err) => {
 
 udpServer.on('message', (msg, rinfo) => {
 	var payload = AccessRecordFactory.parser(msg.toString());
-	if (callBack) {
+	if (callBack) { // forward the payload to any interesting parties ... 
 		callBack(payload);
 	}
 });

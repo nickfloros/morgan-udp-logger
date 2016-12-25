@@ -19,4 +19,6 @@ http.listen(3000, function () {
 
 udpServer.bind(function (payload) {
 	console.log(payload);
+	io.emit('update', payload);
+	//	console.log(payload);
 });

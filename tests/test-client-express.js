@@ -1,15 +1,14 @@
 var express = require('express'),
-	morgan = require('morgan');
+	morganUdpClient = require('../lib/client');
 
 var app;
 
-morgan.token('id', function getId(req) {
-	return req.id
-})
-
 app = express();
 
-app.use(morgan(':id :method :url :response-time'))
+app.use(morganUdpClient.bind({
+	clientId: 'x',
+	host: 'localhost'
+}));
 
 app.get('/', function (req, res) {
 	res.send('hello, world!')
